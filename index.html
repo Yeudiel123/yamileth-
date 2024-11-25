@@ -6,13 +6,15 @@
     <title>Para la Número 1</title>
     <style>
         body {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            font-family: 'Arial', sans-serif;
-            color: #333;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Asegura que el cuerpo tenga al menos la altura completa de la pantalla */
+    position: relative; /* Para que los corazones se posicionen relativos a la página */
+}
         .container {
             padding: 20px;
         }
@@ -76,56 +78,54 @@
             margin: 20px auto;
             outline: none;
         }
-        .hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
+
+        /* Estilos para los corazones */
         .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: red;
-            transform: scale(1) rotate(45deg);
-            opacity: 0.7;
-            animation: float 5s infinite ease-in-out;
-            border-radius: 5px;
-        }
-        @keyframes float {
-            0% { transform: translateY(0) rotate(45deg); }
-            50% { opacity: 1; transform: translateY(-200px) rotate(45deg); }
-            100% { opacity: 0; transform: translateY(-400px) rotate(45deg); }
-        }
+    position: absolute;
+    top: -50px;
+    font-size: 24px;
+    animation: fall 5s infinite;
+    color: #ff6f61;
+    pointer-events: none; /* Asegura que los corazones no interfieran con los clics */
+}
+
+@keyframes fall {
+    0% {
+        top: -50px;
+        opacity: 1;
+    }
+    100% {
+        top: 100%; /* El corazón caerá hasta el final de la página */
+        opacity: 0;
+    }
+}
+
+.container {
+    padding: 20px;
+    position: relative; /* Para que el contenido se quede en su lugar */
+    z-index: 1; /* Asegura que el contenido esté sobre los corazones */
+}
     </style>
 </head>
 <body>
     <!-- Decoración de corazones -->
-    <div class="hearts" id="hearts"></div>
-
+    
     <!-- Contenido principal -->
     <div class="container">
         <h1>Para mi Chica de Ojos Lindos</h1>
         <h2>Eres perfecta, eres suficiente ❤️</h2>
         <p class="message">Nunca olvides que tú eres todo lo que necesito para ser feliz. No hay nada en este mundo que pueda superar lo especial que eres. Eres mi chica número 1, y siempre lo serás.</p>
         
-        <!-- Espacio para la foto -->
         <div class="photo">
             <img src="foto nuesta.jpg" alt="Nuestra foto juntos">
         </div>
 
-        <!-- Botón interactivo -->
         <button onclick="mostrarMensaje()">Haz clic para más</button>
 
-        <!-- Mensaje interactivo -->
         <div id="mensajeOculto" style="display: none;" class="message">
             Cada día contigo es un regalo. Gracias por existir. 🧡
         </div>
 
-        <!-- Canciones -->
         <div class="song-player">
             <h2>Nuestra Canción: "Number One Girl"</h2>
             <audio controls>
@@ -140,23 +140,30 @@
         </div>
     </div>
 
-    <!-- Script para el mensaje interactivo -->
     <script>
         function mostrarMensaje() {
             document.getElementById('mensajeOculto').style.display = "block";
         }
 
         // Generación de corazones
-        const heartsContainer = document.getElementById('hearts');
-        function generarCorazon() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
-            heartsContainer.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
-        setInterval(generarCorazon, 500);
+        function crearCorazones() {
+    const numeroCorazones = 10;  // Puedes ajustar el número de corazones
+    for (let i = 0; i < numeroCorazones; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.textContent = "❤️";
+        // Posición aleatoria en el eje X
+        heart.style.left = `${Math.random() * 100}vw`;
+        // Posición aleatoria en el tiempo para la animación
+        heart.style.animationDuration = `${Math.random() * 5 + 5}s`; // Duración aleatoria entre 5s y 10s
+        document.body.appendChild(heart);
+    }
+}
+
+// Llamar a la función cuando se carga la página
+window.onload = function() {
+    crearCorazones();
+};
     </script>
 </body>
 </html>
