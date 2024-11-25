@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para la Número 1</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+        h2 {
+            font-size: 2em;
+            color: #fff;
+            margin-top: 10px;
+        }
+        p {
+            font-size: 1.2em;
+            color: #fff;
+            margin: 20px 0;
+        }
+        .message {
+            font-size: 1.4em;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ff4e42;
+            transform: scale(1.05);
+        }
+        .photo {
+            margin-top: 20px;
+        }
+        .photo img {
+            width: 80%;
+            max-width: 300px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .song-player {
+            margin: 30px auto;
+        }
+        audio {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            outline: none;
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: scale(1) rotate(45deg);
+            opacity: 0.7;
+            animation: float 5s infinite ease-in-out;
+            border-radius: 5px;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(45deg); }
+            50% { opacity: 1; transform: translateY(-200px) rotate(45deg); }
+            100% { opacity: 0; transform: translateY(-400px) rotate(45deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decoración de corazones -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1>Para mi Chica de Ojos Lindos</h1>
+        <h2>Eres perfecta, eres suficiente ❤️</h2>
+        <p class="message">Nunca olvides que tú eres todo lo que necesito para ser feliz. No hay nada en este mundo que pueda superar lo especial que eres. Eres mi chica número 1, y siempre lo serás.</p>
+        
+        <!-- Espacio para la foto -->
+        <div class="photo">
+            <img src="foto nuesta.jpg" alt="Nuestra foto juntos">
+        </div>
+
+        <!-- Botón interactivo -->
+        <button onclick="mostrarMensaje()">Haz clic para más</button>
+
+        <!-- Mensaje interactivo -->
+        <div id="mensajeOculto" style="display: none;" class="message">
+            Cada día contigo es un regalo. Gracias por existir. 🧡
+        </div>
+
+        <!-- Canciones -->
+        <div class="song-player">
+            <h2>Nuestra Canción: "Number One Girl"</h2>
+            <audio controls>
+                <source src="number-one-girl.mp3" type="audio/mpeg">
+                Tu navegador no soporta la reproducción de audio.
+            </audio>
+            <h2>Tu Canción: "Orange Flower"</h2>
+            <audio controls>
+                <source src="orange-flower.mp3" type="audio/mpeg">
+                Tu navegador no soporta la reproducción de audio.
+            </audio>
+        </div>
+    </div>
+
+    <!-- Script para el mensaje interactivo -->
+    <script>
+        function mostrarMensaje() {
+            document.getElementById('mensajeOculto').style.display = "block";
+        }
+
+        // Generación de corazones
+        const heartsContainer = document.getElementById('hearts');
+        function generarCorazon() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(generarCorazon, 500);
+    </script>
+</body>
+</html>
